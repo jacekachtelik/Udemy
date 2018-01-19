@@ -1,0 +1,43 @@
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    border: 20px solid #bdc3c7;
+    max-width: 700px;
+    width: 80%;
+    height: 100%;
+    margin: 20px auto 0 auto;
+    padding: 20px;
+}
+
+h2 {
+    font-size: 2.0rem;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    text-transform: capitalize;
+    color: #2c3e50;
+}
+
+p {
+    font-size: 18px;
+    margin-bottom: 10px;
+    line-height: 130%;
+    text-align: justify;
+    margin-bottom: 10px;
+}
+
+hr {
+    background-color: #bdc3c7;
+    height: 1px;
+    margin-top: 20px;
+}
+
+.date {
+    color: #3498db;
+    margin-top: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+}
+
+.first-paragraph {
+    border-left: 5px solid #bdc3c7;
+    padding-left: 5px;
+}
