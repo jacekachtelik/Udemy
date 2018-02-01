@@ -1,5 +1,5 @@
 <?php
-class Vehicle {
+abstract class Vehicle {
     private $noOfWheels;
     private $color;
     private $fuel;
@@ -80,9 +80,11 @@ class Vehicle {
     public function brake() {
         echo "vehicle is stopping... <br>";
     }
+
+    abstract function doMaintenance(); // metoda musi być zaimplementowana w klasach dziedziczących
 }
 
-class PassengerVehicle extends Vehicle {
+abstract class PassengerVehicle extends Vehicle {
     private $passengerSeats;
 
     /**
@@ -120,6 +122,22 @@ class Bike extends PassengerVehicle {
     {
         $this->saddleHeight = $saddleHeight;
     }
+
+    public function accelerate()
+    {
+        echo "Bike is accelerate<br>";
+    }
+
+    public function brake()
+    {
+        parent::brake();
+        echo "Brake method from bike class ... <br>";
+    }
+
+    public function doMaintenance() {
+        echo "Bike is in maintenance";
+    }
+
 }
 
 class Car extends PassengerVehicle {
@@ -140,9 +158,39 @@ class Car extends PassengerVehicle {
     {
         $this->noOfDoors = $noOfDoors;
     }
+
+    public function doMaintenance() {
+        echo "Car is in maintenance";
+    }
 }
 
-class TransportationVehicle extends Vehicle {
+class AnotherCar extends PassengerVehicle {
+    private $noOfDoors;
+
+    /**
+     * @return mixed
+     */
+    public function getNoOfDoors()
+    {
+        return $this->noOfDoors;
+    }
+
+    /**
+     * @param mixed $noOfDoors
+     */
+    public function setNoOfDoors($noOfDoors)
+    {
+        $this->noOfDoors = $noOfDoors;
+    }
+
+    public function doMaintenance()
+    {
+        // TODO: Implement doMaintenance() method.
+    }
+
+}
+
+abstract class TransportationVehicle extends Vehicle {
     private $noOfDoors;
     private $loadCapacity;
 
@@ -197,6 +245,10 @@ class Van extends TransportationVehicle {
     {
         $this->noOfBoxes = $noOfBoxes;
     }
+
+    public function doMaintenance() {
+        echo "Van is in maintenance";
+    }
 }
 
 class Truck extends TransportationVehicle {
@@ -217,6 +269,10 @@ class Truck extends TransportationVehicle {
     {
         $this->sizeOfContainer = $sizeOfContainer;
     }
+
+    public function doMaintenance() {
+        echo "Truck is in maintenance";
+    }
 }
 
 $carObj = new Car();
@@ -230,6 +286,34 @@ $carObj->start();
 $carObj->accelerate();
 $carObj->brake();
 
-var_dump($carObj);
+//var_dump($carObj);
+
+$bikeObj = new Bike();
+$bikeObj->setNoOfWheels(2);
+$bikeObj->setColor("Black");
+$bikeObj->setFuel("Petrol");
+$bikeObj->setSpeed(0);
+$bikeObj->setPassengerSeats(2);
+$bikeObj->setSaddleHeight(2);
+$bikeObj->start();
+$bikeObj->accelerate();
+$bikeObj->brake();
+
+//$vehicleObj = new Vehicle();
+$vanObj = new Van();
+$truckObj = new Truck();
+
+$carObj->doMaintenance();
+echo "<br>";
+$vanObj->doMaintenance();
+echo "<br>";
+$bikeObj->doMaintenance();
+echo "<br>";
+$truckObj->doMaintenance();
+echo "<br>";
+$anotherCarObj = new AnotherCar();
+echo "<br>";
+
+
 
 ?>
